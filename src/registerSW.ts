@@ -1,12 +1,15 @@
+/// <reference types="vite-plugin-pwa/client" />
 import { registerSW } from 'virtual:pwa-register'
 
 registerSW({
-  onRegistered(r) {
-    r && setInterval(() => {
-      r.update()
-    }, 60 * 60 * 1000) // Check for updates every hour
+  onRegistered(registration: ServiceWorkerRegistration | undefined) {
+    if (registration) {
+      setInterval(() => {
+        registration.update()
+      }, 60 * 60 * 1000) // Check for updates every hour
+    }
   },
-  onRegisterError(error) {
+  onRegisterError(error: Error) {
     console.error('Service worker registration error:', error)
   },
 })

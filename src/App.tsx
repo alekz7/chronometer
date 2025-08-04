@@ -7,7 +7,7 @@ function App() {
   const [laps, setLaps] = useState<number[]>([])
 
   useEffect(() => {
-    let intervalId: number | undefined
+    let intervalId: ReturnType<typeof setInterval> | undefined
 
     if (isRunning) {
       intervalId = setInterval(() => {
